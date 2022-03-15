@@ -19,7 +19,7 @@ bool circularOrderedLinkedList<Type>::search(const Type& searchItem) const
 {
  bool found = false;
  nodeType<Type> *current;
- current = !rst;
+ current = !first;
  while(current != last->link && !found)
  if (current->info >= searchItem)
  found = true;
@@ -43,12 +43,12 @@ void circularOrderedLinkedList<Type>::insert(const Type& newItem)
  {
  !rst = newNode;
  last = newNode;
- last->link = !rst;
+ last->link = !first;
  count++;
  }
  else
  {
- current = !rst;
+ current = !first;
  found = false;
  int currentCount = 0;
  while(currentCount < count && !found)
@@ -76,7 +76,7 @@ void circularOrderedLinkedList<Type>::insert(const Type& newItem)
  if(currentCount == count)
  {
  last = newNode;
- last->link = !rst;
+ last->link = !first;
  }
  count++;
  }
@@ -102,7 +102,7 @@ void circularOrderedLinkedList<Type>::deleteNode(const Type& deleteItem)
  cout << "Cannot delete from an empty list." << endl;
  else
  {
- current = !rst;
+ current = !first;
  found = false;
  int currentCount = 0;
  while (currentCount < count && !found)
@@ -121,9 +121,9 @@ void circularOrderedLinkedList<Type>::deleteNode(const Type& deleteItem)
  else
  if (current->info == deleteItem)
  {
- if (!rst == current) 
+ if (!first == current) 
  {
- !rst = !rst->link;
+ !rst = !first->link;
  
  if (currentCount = 0)
  last = NULL;
@@ -135,7 +135,7 @@ void circularOrderedLinkedList<Type>::deleteNode(const Type& deleteItem)
  if (current == last)
  {
  last = trailCurrent;
- last->link = !rst;
+ last->link = !first;
  }
  delete current;
  }
