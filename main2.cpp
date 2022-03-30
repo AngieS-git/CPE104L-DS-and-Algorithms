@@ -18,7 +18,7 @@ int main()
 
     cout << "List 1: "; 
     list1.print(); 
-    cout<<"Length List 1: "<<   list1.length();
+    cout<<"\nLength List 1: "<<list1.length();
   
 
     cout << endl; 
@@ -29,16 +29,24 @@ int main()
 
     if(list1.search(num)){
         cout<< num<< " found in the list\n";
+    }
+    else{
+      cout<<num<<" not found in the list\n";
     };
 
     cout<<"Enter the number to be deleted: ";
     cin>>num;
-    list1.deleteNode(num);
-    cout << endl;
-    cout << "After deleting " << num << ", List 1: "; 
-    list1.print(); 
-    cout << endl;
-    cout<<"Length List 1: "<< list1.length();
+    if(list1.search(num)){
+      list1.deleteNode(num);
+    }
+    else{
+      cout<<"The item to be deleted is not in the list\n";
+    }
+  
+  cout << "\nAfter deleting " << num << ", List 1: "; 
+      list1.print(); 
+      cout << endl;
+      cout<<"Length List 1: "<< list1.length()<<endl;
 
 
     return 0; 
