@@ -32,7 +32,7 @@ int main()
  serverListType serverList = serverListType(numOfServers); 
  waitingCustomerQueueType queue = waitingCustomerQueueType(); 
 
- runSimulation(numOfServers , sTime, serverList, queue, tBetweenCArrival, transTime);
+ runSimulation(numOfServers,sTime, serverList, queue, tBetweenCArrival, transTime);
    
    
    return 0;
