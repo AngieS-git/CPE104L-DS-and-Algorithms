@@ -1,11 +1,11 @@
-#include <iostream> 
+#include <iostream>
 #include "myStack.h"
 
 using namespace std;
 
 int main() {
     stackType<int> stack1;
-    stackType<int> stack 2;
+    stackType<int> stack2;
 
     stack1.push(1);
     stack1.push(2);

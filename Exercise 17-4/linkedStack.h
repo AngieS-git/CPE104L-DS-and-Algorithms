@@ -1,12 +1,12 @@
 //Header File: linkedStack.h
 
-#ifndef H_StackType 
-#define H_StackType 
+#ifndef H_StackType
+#define H_StackType
 
 #include <iostream>
 #include <cassert>
-  
-#include "stackADT.h"
+
+
 
 using namespace std;
 
@@ -19,71 +19,45 @@ struct nodeType
 };
 
 template <class Type>
-class linkedStackType: public stackADT<Type>
+class linkedStackType
 {
 public:
     const linkedStackType<Type>& operator=
                               (const linkedStackType<Type>&);
-      //Overload the assignment operator.
 
     bool isEmptyStack() const;
-      //Function to determine whether the stack is empty.
-      //Postcondition: Returns true if the stack is empty;
-      //               otherwise returns false.
+
 
     bool isFullStack() const;
-      //Function to determine whether the stack is full.
-      //Postcondition: Returns false.
+
 
     void initializeStack();
-      //Function to initialize the stack to an empty state. 
-      //Postcondition: The stack elements are removed; 
-      //               stackTop = nullptr;
 
     void push(const Type& newItem);
-      //Function to add newItem to the stack.
-      //Precondition: The stack exists and is not full.
-      //Postcondition: The stack is changed and newItem 
-      //               is added to the top of the stack.
 
     Type top() const;
-      //Function to return the top element of the stack.
-      //Precondition: The stack exists and is not empty.
-      //Postcondition: If the stack is empty, the program 
-      //               terminates; otherwise, the top 
-      //               element of the stack is returned.
+
 
     void pop();
-      //Function to remove the top element of the stack.
-      //Precondition: The stack exists and is not empty.
-      //Postcondition: The stack is changed and the top 
-      //               element is removed from the stack.
 
-    linkedStackType(); 
-      //Default constructor
-      //Postcondition: stackTop = nullptr;
+    linkedStackType();
 
-    linkedStackType(const linkedStackType<Type>& otherStack); 
-      //Copy constructor
+    linkedStackType(const linkedStackType<Type>& otherStack);
+
 
     ~linkedStackType();
-      //Destructor
-      //Postcondition: All the elements of the stack are 
-      //               removed from the stack.
 
     void reverseStack(linkedStackType<Type> &otherStack);
 
 private:
     nodeType<Type> *stackTop; //pointer to the stack
 
-    void copyStack(const linkedStackType<Type>& otherStack); 
-      //Function to make a copy of otherStack.
-      //Postcondition: A copy of otherStack is created and
-      //               assigned to this stack.
+    void copyStack(const linkedStackType<Type>& otherStack);
+
 };
 
     //Default constructor
-template <class Type> 
+template <class Type>
 linkedStackType<Type>::linkedStackType()
 {
     stackTop = nullptr;
@@ -106,10 +80,10 @@ void linkedStackType<Type>::initializeStack()
 {
     nodeType<Type> *temp; //pointer to delete the node
 
-    while (stackTop != nullptr)    //while there are elements in 
+    while (stackTop != nullptr)    //while there are elements in
                                 //the stack
     {
-        temp = stackTop;    //set temp to point to the 
+        temp = stackTop;    //set temp to point to the
                             //current node
         stackTop = stackTop->link;  //advance stackTop to the
                                     //next node
@@ -126,7 +100,7 @@ void linkedStackType<Type>::push(const Type& newElement)
 
     newNode->info = newElement; //store newElement in the node
     newNode->link = stackTop; //insert newNode before stackTop
-    stackTop = newNode;       //set stackTop to point to the 
+    stackTop = newNode;       //set stackTop to point to the
                               //top node
 } //end push
 
@@ -136,7 +110,7 @@ Type linkedStackType<Type>::top() const
 {
     assert(stackTop != nullptr); //if stack is empty,
                               //terminate the program
-    return stackTop->info;    //return the top element 
+    return stackTop->info;    //return the top element
 }//end top
 
 template <class Type>
@@ -148,7 +122,7 @@ void linkedStackType<Type>::pop()
     {
         temp = stackTop;  //set temp to point to the top node
 
-        stackTop = stackTop->link;  //advance stackTop to the 
+        stackTop = stackTop->link;  //advance stackTop to the
                                     //next node
         delete temp;    //delete the top node
     }
@@ -156,7 +130,7 @@ void linkedStackType<Type>::pop()
         cout << "Cannot remove from an empty stack." << endl;
 }//end pop
 
-template <class Type> 
+template <class Type>
 void linkedStackType<Type>::copyStack
                      (const linkedStackType<Type>& otherStack)
 {
@@ -172,7 +146,7 @@ void linkedStackType<Type>::copyStack
         current = otherStack.stackTop;  //set current to point
                                    //to the stack to be copied
 
-            //copy the stackTop element of the stack 
+            //copy the stackTop element of the stack
         stackTop = new nodeType<Type>;  //create the node
 
         stackTop->info = current->info; //copy the info
@@ -196,7 +170,7 @@ void linkedStackType<Type>::copyStack
 } //end copyStack
 
     //copy constructor
-template <class Type>   
+template <class Type>
 linkedStackType<Type>::linkedStackType(
                       const linkedStackType<Type>& otherStack)
 {
@@ -205,21 +179,59 @@ linkedStackType<Type>::linkedStackType(
 }//end copy constructor
 
     //destructor
-template <class Type> 
+template <class Type>
 linkedStackType<Type>::~linkedStackType()
 {
     initializeStack();
 }//end destructor
 
     //overloading the assignment operator
-template <class Type>   
+template <class Type>
 const linkedStackType<Type>& linkedStackType<Type>::operator=
     			  (const linkedStackType<Type>& otherStack)
-{ 
+{
     if (this != &otherStack) //avoid self-copy
         copyStack(otherStack);
 
-    return *this; 
+    return *this;
 }//end operator=
+
+template <class Type>
+void stackType<Type>::reverseStack (stackType<Type> &otherStack){
+
+
+
+otherStack.initializeStack();
+
+ for(int i=stackTop-1;i>=0;i--){
+
+ otherStack.push(list[i]);
+ }
+}
+
+template<class Type>
+void linkedStackType<Type>::reverseStack(linkedStackType<Type> &otherStack)
+ // Declare the required variable
+ int lp;
+
+ // Destroy the stack2 contents
+ otherStack.initializeStack();
+
+ // Check stack2 size is less than the stact1 elements count
+ if (stack_Top > otherStack.max_Size)
+ {
+ cout << "The other stack size is less than the number of
+ elements available in the current stack." << endl;
+ cout << "so this stack cannot be reversed." << endl;
+ }
+ else
+ {
+ // Initialize the stack2 top value
+ otherStack.stack_Top = stack_Top;
+
+ for (int i = stackTop -1; i>=0;i--)
+ otherStack.push(list[i]);
+ }
+}
 
 #endif

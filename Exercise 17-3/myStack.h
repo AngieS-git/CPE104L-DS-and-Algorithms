@@ -81,7 +81,6 @@ private:
       //               assigned to this stack.
 };
 
-
 template <class Type>
 void stackType<Type>::initializeStack()
 {
@@ -191,5 +190,15 @@ const stackType<Type>& stackType<Type>::operator=
 
     return *this;
 } //end operator=
+
+template<class Type>
+void stackType<Type>::reverseStack(stackType<Type>& otherStack)
+{
+    otherStack.initializeStack();
+    for(int i =  stackTop - 1; i>=0; i--)
+    {
+        otherStack.push(list[i]);
+    }
+}
 
 #endif
