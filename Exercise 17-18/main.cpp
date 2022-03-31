@@ -6,14 +6,18 @@
 #include "simulation.h"
 #include "queueAsArray.h"
 using namespace std;
+
 void setSimulationParameters(int& sTime, int& numOfServers, int& transTime, int& tBetweenCArrival);
+
 void runSimulation(int numberOfServers, int simulationTime, serverListType& serverList,
 waitingCustomerQueueType& queue, int tBtwCustomerArrival, int transactionTime);
+
 int main() {
  int simulationTime; // Total run time for the simulation as time units
  int numberOfServers; // Number of available servers for the queue
  int transactionTime; // Time that it takes for a customer/server to !nish a single transaction
  int tBtwCustomerArrival; // AVERAGE time between the arrival of each customer
+
  setSimulationParameters(simulationTime, numberOfServers, transactionTime, tBtwCustomerArrival);
  
  serverListType serverList = serverListType(numberOfServers); // Establish a list for all servers
@@ -23,6 +27,7 @@ int main() {
 transactionTime);
  return 0;
 }
+
 void setSimulationParameters(int& sTime, int& numOfServers, int& transTime, int& tBetweenCArrival) {
  cout << endl;
  cout << " Enter the simulation time: ";
@@ -36,6 +41,7 @@ void setSimulationParameters(int& sTime, int& numOfServers, int& transTime, int&
  cout << endl;
  cout << "•••••••••••••••••••••• Begin Simulation ••••••••••••••••••••••" << endl;
 }
+
 void runSimulation(int numServers, int simulationTime, serverListType& serverList,
 waitingCustomerQueueType& queue, int tBtwCustomerArrival, int transactionTime) {
  // Calculate the cut o" for the probability of a customer arriving using the Poisson Distributoin(exp(-1/NumCustomers))
@@ -60,7 +66,7 @@ waitingCustomerQueueType& queue, int tBtwCustomerArrival, int transactionTime) {
  rNum = ((double) rand() / (RAND_MAX));
  if(rNum > cutOff){
  totalNumCustomers++;
- cout << "[31mCustomer number " << totalNumCustomers << " came at time: " << tick << "[0m"
+ cout << "\x1b[31mCustomer number " << totalNumCustomers << " came at time: " << tick << "\x1b[0m"
 << endl;
  customerType nextUp = customerType(totalNumCustomers, tick, 0, transactionTime);
  queue.addQueue(nextUp);
@@ -79,8 +85,9 @@ waitingCustomerQueueType& queue, int tBtwCustomerArrival, int transactionTime) {
  if (!queue.isEmptyQueue()) {
  totalWaitingTime += queue.getCount();
  if (queueChanged){
- cout << "[36mCustomers in the queue: ";
+ cout << "\x1b[36mCustomers in the queue: ";
  queue.printQueue();
+ cout<<"\x1b[0m\n";
 
  }
  }
@@ -96,13 +103,13 @@ waitingCustomerQueueType& queue, int tBtwCustomerArrival, int transactionTime) {
  cout << "Transaction time: " << transactionTime << endl;
  cout << "Average time difference between customer arrival: " << tBtwCustomerArrival << endl << endl;
  // Output the calculated simulation data
- cout << "[33mTotal waiting time: " << totalWaitingTime << endl;
+ cout << "\x1b[33mTotal waiting time: " << totalWaitingTime << endl;
  cout << "Number of customers that completed a transaction: " <<
 serverList.getNumCompletedTransactions() << endl;
  cout << "Number of customers left in the servers:" << serverList.getNumberOfBusyServers() << endl;
  cout << "Number of customers left in the waiting queue: " << queue.getCount() << endl;
  cout << "Average waiting time: " <<
 (double)totalWaitingTime/(serverList.getNumCompletedTransactions()+serverList.getNumberOfBusyServers
-()+queue.getCount()) << " ";
+()+queue.getCount()) <<"\x1b[0m\n";
  cout << "•••••••••••••••••••••• End Simulation ••••••••••••••••••••••" << endl << endl;
 }
