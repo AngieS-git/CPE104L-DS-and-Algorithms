@@ -1,5 +1,6 @@
-#include <iostream>
-#include "myStack.h"
+
+#include<iostream>
+#include "linkedStack.h"
 
 using namespace std;
 
@@ -7,8 +8,8 @@ int main() {
       cout << "\n\n\tProgram to overload the realtional "
    << "operator == for the class stackType.";
 
-  linkedstackType<int> stack1;
-  linkedstackType<int> stack2;
+  linkedStackType<int> stack1;
+  linkedStackType<int> stack2;
 
   cout << "\n\n\tInserting elements 5, 10, 15 ... "
    << "to both the stacks.";
