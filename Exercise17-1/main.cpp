@@ -4,9 +4,7 @@
 using namespace std;
 
 int main() {
-
-
-  cout << "\n\n\tProgram to overload the realtional "
+      cout << "\n\n\tProgram to overload the realtional "
    << "operator == for the class stackType.";
 
   stackType<int> s1( 12 );
@@ -20,11 +18,13 @@ int main() {
    s2.push( i );
   }
 
-  if ( s1 == s2 )
-   cout << "\n\tBoth the stacks are equal";
-  else
-   cout << "\n\tBoth the stacks are not equal";
-
+  if ( s1 == s2 ){
+    cout << "\n\tBoth the stacks are equal";
+  }
+  else{
+     cout << "\n\tBoth the stacks are not equal";
+  }
+  
   cout<<"\n\tInserting element 11 to the second stack.";
   s2.push( 11 );
 
@@ -32,8 +32,9 @@ int main() {
    cout << "\n\tBoth the stacks are equal";
   else
    cout << "\n\tBoth the stacks are not equal";
+   
   cout << "\n\n\t";
   system("pause");
-
-  return 0;
+  
+    return 0;
 }
